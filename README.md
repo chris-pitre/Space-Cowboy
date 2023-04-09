@@ -1,1 +1,2 @@
-# Space-Cowboy
+# Space Cowboy
+they're cowboys in space
