@@ -4,6 +4,7 @@ extends Control
 # Dialogue doesn't support dialogue tree nodes with only one choice
 # Using custom resources is a bit annoying if dialogue trees get large
 # Need to support callbacks during dialogue
+# Need to add support for a name at the top of the dialogue menu
 
 const CHOICE_LABEL = preload("res://scenes/ui/choice_label/choice_label.tscn")
 
@@ -24,10 +25,10 @@ var num_choices := 0
 @onready var dialogue_blip = $DialogueMenu/DialogueBlip
 @onready var dialogue_timer = $DialogueMenu/DialogueTimer
 
-func _ready():
+func _ready() -> void:
 	Game.user_interface = self
 
-func _process(delta):
+func _process(delta) -> void:
 	if in_dialogue:
 		if dialogue_running:
 			if dialogue_label.visible_ratio == 1:
@@ -49,7 +50,7 @@ func _process(delta):
 				hovered_choice -= 1
 
 ## Handles displaying of text in the dialogue message box.
-func display_text(message: String) -> void:
+func display_message(message: String) -> void:
 	dialogue_label.text = message
 	dialogue_label.visible_characters = 0
 	dialogue_running = true
@@ -61,7 +62,7 @@ func start_dialogue(dialogue_branch: DialogueBranch, dialogue_actor: DialogueAct
 	in_dialogue = true
 	current_dialogue = dialogue_branch
 	current_dialogue_actor = dialogue_actor
-	get_options()
+	get_choices()
 	
 	# Opening animation.
 	var tween = create_tween()
@@ -70,7 +71,7 @@ func start_dialogue(dialogue_branch: DialogueBranch, dialogue_actor: DialogueAct
 	tween.tween_property(dialogue_menu, "position", Vector2(0, 0.0), 0.5)
 	tween.play()
 	tween.tween_callback(func():
-		display_text(current_dialogue.text)
+		display_message(current_dialogue.message)
 	)
 
 ## Handles ending of dialogue.
@@ -81,6 +82,7 @@ func end_dialogue() -> void:
 	current_dialogue_actor.exit_dialogue()
 	current_dialogue_actor = null
 	dialogue_label.text = ""
+	reset_choices()
 	num_choices = 0
 	
 	# Closing animation.
@@ -91,7 +93,7 @@ func end_dialogue() -> void:
 	tween.play()
 
 ## Handles loading of choices from a DialogueBranch into the UI.
-func get_options() -> void:
+func get_choices() -> void:
 	num_choices = 0
 	if current_dialogue.choices.size() > 1:
 		choices_panel.visible = true
@@ -124,11 +126,15 @@ func set_hovered_choice(option: int) -> void:
 ## Picks an option from the dialogue branches.
 func choice(option: int) -> void:
 	current_dialogue = current_dialogue.choices[option]
-	display_text(current_dialogue.text)
+	display_message(current_dialogue.message)
+	reset_choices()
+	get_choices()
+
+func reset_choices() -> void:
+	hovered_choice = 0
 	for choice in dialogue_choices:
 		choice.queue_free()
 	dialogue_choices = []
-	get_options()
 
 func _on_dialogue_timer_timeout():
 	dialogue_blip.play()

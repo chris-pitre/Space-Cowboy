@@ -1,6 +1,7 @@
 class_name StateMachine
 extends Node
 
+## The state that this state machine is in once it is ready.
 @export var default_state: State
 
 var states = {}

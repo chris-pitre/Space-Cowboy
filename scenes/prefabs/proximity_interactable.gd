@@ -15,6 +15,6 @@ func _on_interact_area_body_exited(body) -> void:
 	if body is Player:
 		player_in_range = false
 
-## Function that is called when the player presses the interact button within range
+## Function that is called when the player presses the interact button within range.
 func interact() -> void:
 	push_error("Interactable doesn't implement <interact> function.")
