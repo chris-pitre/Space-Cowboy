@@ -7,8 +7,8 @@ extends Resource
 @export_multiline var message: String = ""
 ## The text for the choice that leads into this dialogue branch.
 @export var choice_text: String = ""
-## Choices that the player can choose in dialogue.
-@export var choices: Array[DialogueBranch] = []
+## Index of the choices that the player can choose in dialogue.
+@export var choices: Array[int] = []
 ## Name of the function that gets called when the dialogue starts for this message.
 @export var callback_on_begin: String
 ## Name of the function that gets called when the dialogue ends for this message.

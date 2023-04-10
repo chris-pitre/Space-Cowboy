@@ -1,7 +1,8 @@
 class_name DialogueActor
 extends ProximityInteractable
 
-@export var dialogue: DialogueBranch
+@export_category("Dialogue")
+@export var dialogue: Array[DialogueBranch]
 
 var interacting = false
 
@@ -10,7 +11,7 @@ func interact() -> void:
 	if not interacting:
 		enter_dialogue(dialogue)
 
-func enter_dialogue(dialogue: DialogueBranch) -> void:
+func enter_dialogue(dialogue: Array[DialogueBranch]) -> void:
 	Game.user_interface.start_dialogue(dialogue, self)
 	interacting = true
 

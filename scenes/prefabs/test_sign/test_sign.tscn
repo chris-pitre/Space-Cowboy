@@ -1,54 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv4cfc8crpep6"]
+[gd_scene load_steps=6 format=3 uid="uid://dv4cfc8crpep6"]
 
 [ext_resource type="Script" path="res://scenes/prefabs/dialogue_actor.gd" id="1_bdia2"]
-[ext_resource type="Script" path="res://src/resources/dialogue/dialogue_branch.gd" id="2_2lhrm"]
 [ext_resource type="Texture2D" uid="uid://bn5t7r3t4yxpm" path="res://assets/textures/debug/debugsign.png" id="3_ob5g3"]
 [ext_resource type="PackedScene" uid="uid://clct2qlmkw45h" path="res://scenes/prefabs/key_indicator/key_indicator.tscn" id="4_vld7v"]
-
-[sub_resource type="Resource" id="Resource_qriyb"]
-script = ExtResource("2_2lhrm")
-speaker_name = "Name"
-message = "i knew you were cool"
-choice_text = "yeah"
-choices = Array[ExtResource("2_2lhrm")]([])
-callback_on_begin = ""
-callback_on_finished = ""
-
-[sub_resource type="Resource" id="Resource_2wfbk"]
-script = ExtResource("2_2lhrm")
-speaker_name = "Name"
-message = "wow you suck"
-choice_text = "nah"
-choices = Array[ExtResource("2_2lhrm")]([])
-callback_on_begin = ""
-callback_on_finished = ""
-
-[sub_resource type="Resource" id="Resource_8jyn6"]
-script = ExtResource("2_2lhrm")
-speaker_name = "Name"
-message = "do you like signs?"
-choice_text = ""
-choices = Array[ExtResource("2_2lhrm")]([SubResource("Resource_qriyb"), SubResource("Resource_2wfbk")])
-callback_on_begin = ""
-callback_on_finished = ""
-
-[sub_resource type="Resource" id="Resource_mabrm"]
-script = ExtResource("2_2lhrm")
-speaker_name = "Name"
-message = "isn't that cool"
-choice_text = ""
-choices = Array[ExtResource("2_2lhrm")]([SubResource("Resource_8jyn6")])
-callback_on_begin = ""
-callback_on_finished = ""
-
-[sub_resource type="Resource" id="Resource_uwypc"]
-script = ExtResource("2_2lhrm")
-speaker_name = "Name"
-message = "yo yo yo i'm a sign"
-choice_text = ""
-choices = Array[ExtResource("2_2lhrm")]([SubResource("Resource_mabrm")])
-callback_on_begin = ""
-callback_on_finished = ""
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yvg5u"]
 radius = 32.0
@@ -58,7 +12,6 @@ size = Vector2(16, 16)
 
 [node name="TestSign" type="Node2D"]
 script = ExtResource("1_bdia2")
-dialogue = SubResource("Resource_uwypc")
 
 [node name="InteractArea" type="Area2D" parent="."]
 

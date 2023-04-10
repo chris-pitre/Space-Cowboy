@@ -14,6 +14,7 @@ const CHOICE_LABEL = preload("res://scenes/ui/choice_label/choice_label.tscn")
 
 var dialogue_choices = []
 var current_dialogue_actor: DialogueActor
+var current_dialogue_tree: Array[DialogueBranch]
 var current_dialogue: DialogueBranch
 var in_dialogue := false
 var dialogue_running := false
@@ -41,7 +42,7 @@ func _process(delta) -> void:
 				if current_dialogue.choices.size() == 0:
 					end_dialogue()
 				else:
-					choice(hovered_choice)
+					choice(current_dialogue.choices[hovered_choice])
 		if Input.is_action_just_pressed("move_down"):
 			if hovered_choice < (num_choices - 1):
 				hovered_choice += 1
@@ -57,11 +58,12 @@ func display_message(message: String) -> void:
 	dialogue_timer.start()
 
 ## Starts dialogue given a DialogueBranch.
-func start_dialogue(dialogue_branch: DialogueBranch, dialogue_actor: DialogueActor) -> void:
+func start_dialogue(dialogue_tree: Array[DialogueBranch], dialogue_actor: DialogueActor) -> void:
 	Game.player.movement_locked = true
 	in_dialogue = true
-	current_dialogue = dialogue_branch
+	current_dialogue_tree = dialogue_tree
 	current_dialogue_actor = dialogue_actor
+	current_dialogue = current_dialogue_tree[0]
 	get_choices()
 	
 	# Opening animation.
@@ -95,6 +97,7 @@ func end_dialogue() -> void:
 ## Handles loading of choices from a DialogueBranch into the UI.
 func get_choices() -> void:
 	num_choices = 0
+	print(current_dialogue.choices)
 	if current_dialogue.choices.size() > 1:
 		choices_panel.visible = true
 		for option in current_dialogue.choices:
@@ -102,7 +105,7 @@ func get_choices() -> void:
 			var new_choice_label = CHOICE_LABEL.instantiate()
 			choices_container.add_child(new_choice_label)
 			dialogue_choices.append(new_choice_label)
-			new_choice_label.text = option.choice_text
+			new_choice_label.text = current_dialogue_tree[option].choice_text
 	else:
 		choices_panel.visible = false
 	set_hovered_choice(0)
@@ -125,7 +128,7 @@ func set_hovered_choice(option: int) -> void:
 
 ## Picks an option from the dialogue branches.
 func choice(option: int) -> void:
-	current_dialogue = current_dialogue.choices[option]
+	current_dialogue = current_dialogue_tree[option]
 	display_message(current_dialogue.message)
 	reset_choices()
 	get_choices()
