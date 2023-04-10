@@ -1,9 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://cht83s1gpqomg"]
+[gd_scene load_steps=9 format=3 uid="uid://cht83s1gpqomg"]
 
 [ext_resource type="PackedScene" uid="uid://c2wv18fqsgcl4" path="res://scenes/actors/player/player.tscn" id="1_kwycl"]
 [ext_resource type="Environment" uid="uid://53hbjpe3s7k1" path="res://assets/environment/basic_env.tres" id="2_dmfa6"]
 [ext_resource type="PackedScene" uid="uid://dv4cfc8crpep6" path="res://scenes/prefabs/test_sign/test_sign.tscn" id="3_3bpow"]
 [ext_resource type="TileSet" uid="uid://ce3pb7mx2dg50" path="res://assets/environment/tilesets/basic.tres" id="4_cwhe2"]
+[ext_resource type="Script" path="res://src/resources/dialogue/dialogue_branch.gd" id="4_jjvmf"]
+
+[sub_resource type="Resource" id="Resource_1b6dj"]
+script = ExtResource("4_jjvmf")
+speaker_name = "Name"
+message = "i am sign.
+do you like signs?"
+choice_text = ""
+choices = Array[int]([1, 2])
+callback_on_begin = ""
+callback_on_finished = ""
+
+[sub_resource type="Resource" id="Resource_pjydb"]
+script = ExtResource("4_jjvmf")
+speaker_name = "Name"
+message = "cool"
+choice_text = "yes"
+choices = Array[int]([])
+callback_on_begin = ""
+callback_on_finished = ""
+
+[sub_resource type="Resource" id="Resource_jegkr"]
+script = ExtResource("4_jjvmf")
+speaker_name = "Name"
+message = "fuck you"
+choice_text = "no"
+choices = Array[int]([])
+callback_on_begin = ""
+callback_on_finished = ""
 
 [node name="World" type="Node2D"]
 
@@ -20,6 +49,7 @@ environment = ExtResource("2_dmfa6")
 
 [node name="TestSign" parent="." instance=ExtResource("3_3bpow")]
 position = Vector2(232, 136)
+dialogue = Array[ExtResource("4_jjvmf")]([SubResource("Resource_1b6dj"), SubResource("Resource_pjydb"), SubResource("Resource_jegkr")])
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -5
