@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://3m1fi4p1mn7j"]
+
+[ext_resource type="FontFile" uid="uid://c5lo51ho2gio0" path="res://assets/themes/fonts/JosefinSans-Bold.ttf" id="1_b083b"]
+
+[resource]
+default_font = ExtResource("1_b083b")
+default_font_size = 36

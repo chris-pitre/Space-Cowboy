@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://ce3pb7mx2dg50"]
+
+[ext_resource type="Texture2D" uid="uid://hre4e8oh206w" path="res://assets/textures/debug/checkers.png" id="1_2crr6"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_2tdpb"]
+tile_data = PackedInt32Array(0, 5, 0, 65536, 65541, 0, 1, 65541, 0, 65537, 5, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vqimx"]
+texture = ExtResource("1_2crr6")
+0:0/0 = 0
+1:0/0 = 0
+
+[resource]
+sources/5 = SubResource("TileSetAtlasSource_vqimx")
+pattern_0 = SubResource("TileMapPattern_2tdpb")

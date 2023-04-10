@@ -1,17 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbmjurmlpr0e7"]
+[gd_scene load_steps=4 format=3 uid="uid://cbmjurmlpr0e7"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_mgoh8"]
 [ext_resource type="AudioStream" uid="uid://blvtqjojs5nh6" path="res://assets/sounds/effects/menu/dialogueblip.wav" id="2_qadre"]
+[ext_resource type="Theme" uid="uid://3m1fi4p1mn7j" path="res://assets/themes/basic.tres" id="3_gs3bm"]
 
-[node name="UserInterface" type="Control" node_paths=PackedStringArray("dialogue_label")]
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("dialogue_label", "choices_container", "choices_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_gs3bm")
 script = ExtResource("1_mgoh8")
-dialogue_label = NodePath("DialogueMenu/DialogueMargin/TextBackground/DialogueText")
+dialogue_label = NodePath("DialogueMenu/DialogueMargin/HBoxContainer/DialoguePanel/MarginContainer/DialogueText")
+choices_container = NodePath("DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel/MarginContainer/ChoicesContainer")
+choices_panel = NodePath("DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel")
 
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 1
@@ -46,6 +50,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 400.0
+offset_bottom = 400.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -53,6 +59,7 @@ grow_vertical = 2
 stream = ExtResource("2_qadre")
 
 [node name="DialogueTimer" type="Timer" parent="DialogueMenu"]
+wait_time = 0.08
 
 [node name="DialogueMargin" type="MarginContainer" parent="DialogueMenu"]
 layout_mode = 1
@@ -66,15 +73,52 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TextBackground" type="Panel" parent="DialogueMenu/DialogueMargin"]
-custom_minimum_size = Vector2(0, 320)
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueMenu/DialogueMargin"]
+custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="DialogueText" type="RichTextLabel" parent="DialogueMenu/DialogueMargin/TextBackground"]
+[node name="DialoguePanel" type="Panel" parent="DialogueMenu/DialogueMargin/HBoxContainer"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueMenu/DialogueMargin/HBoxContainer/DialoguePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueMenu/DialogueMargin/HBoxContainer/DialoguePanel/MarginContainer"]
+layout_mode = 2
+scroll_active = false
+
+[node name="ChoicesPanel" type="Panel" parent="DialogueMenu/DialogueMargin/HBoxContainer"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="MarginContainer" type="MarginContainer" parent="DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[connection signal="timeout" from="DialogueMenu/DialogueTimer" to="." method="_on_dialogue_timer_timeout"]

@@ -1,12 +1,19 @@
 class_name DialogueActor
-extends Node
+extends ProximityInteractable
 
+@export var dialogue: DialogueBranch
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var interacting = false
 
+## Function that is called when player
+func interact() -> void:
+	if not interacting:
+		enter_dialogue(dialogue)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func enter_dialogue(dialogue: DialogueBranch) -> void:
+	Game.user_interface.start_dialogue(dialogue, self)
+	interacting = true
+
+func exit_dialogue() -> void:
+	await get_tree().create_timer(0.5).timeout # Debounce to avoid reentering dialogue immediately
+	interacting = false

@@ -1,0 +1,68 @@
+[gd_scene load_steps=12 format=3 uid="uid://dv4cfc8crpep6"]
+
+[ext_resource type="Script" path="res://scenes/prefabs/dialogue_actor.gd" id="1_bdia2"]
+[ext_resource type="Script" path="res://src/resources/dialogue/dialogue_branch.gd" id="2_2lhrm"]
+[ext_resource type="Texture2D" uid="uid://bn5t7r3t4yxpm" path="res://assets/textures/debug/debugsign.png" id="3_ob5g3"]
+[ext_resource type="PackedScene" uid="uid://clct2qlmkw45h" path="res://scenes/prefabs/key_indicator/key_indicator.tscn" id="4_vld7v"]
+
+[sub_resource type="Resource" id="Resource_qriyb"]
+script = ExtResource("2_2lhrm")
+choice_text = "yeah"
+text = "i knew you were a good one"
+choices = Array[ExtResource("2_2lhrm")]([])
+
+[sub_resource type="Resource" id="Resource_2wfbk"]
+script = ExtResource("2_2lhrm")
+choice_text = "nah"
+text = "wow you suck"
+choices = Array[ExtResource("2_2lhrm")]([])
+
+[sub_resource type="Resource" id="Resource_8jyn6"]
+script = ExtResource("2_2lhrm")
+choice_text = ""
+text = "do you like signs?"
+choices = Array[ExtResource("2_2lhrm")]([SubResource("Resource_qriyb"), SubResource("Resource_2wfbk")])
+
+[sub_resource type="Resource" id="Resource_mabrm"]
+script = ExtResource("2_2lhrm")
+choice_text = ""
+text = "pretty cool right?"
+choices = Array[ExtResource("2_2lhrm")]([SubResource("Resource_8jyn6")])
+
+[sub_resource type="Resource" id="Resource_uwypc"]
+script = ExtResource("2_2lhrm")
+choice_text = ""
+text = "yo yo yo i'm a sign"
+choices = Array[ExtResource("2_2lhrm")]([SubResource("Resource_mabrm")])
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvg5u"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uheix"]
+size = Vector2(16, 16)
+
+[node name="TestSign" type="Node2D"]
+script = ExtResource("1_bdia2")
+dialogue = SubResource("Resource_uwypc")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_yvg5u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_ob5g3")
+
+[node name="SignCollision" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SignCollision"]
+shape = SubResource("RectangleShape2D_uheix")
+
+[node name="KeyIndicator" parent="." instance=ExtResource("4_vld7v")]
+visible = false
+position = Vector2(0, -18)
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_entered" from="InteractArea" to="KeyIndicator" method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
+[connection signal="body_exited" from="InteractArea" to="KeyIndicator" method="_on_interact_area_body_exited"]
