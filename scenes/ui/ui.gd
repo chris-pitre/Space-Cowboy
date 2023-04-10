@@ -2,7 +2,6 @@ class_name UserInterface
 extends Control
 
 # Dialogue doesn't support dialogue tree nodes with only one choice
-# Using custom resources is a bit annoying if dialogue trees get large
 # Need to support callbacks during dialogue
 # Need to add support for a name at the top of the dialogue menu
 
