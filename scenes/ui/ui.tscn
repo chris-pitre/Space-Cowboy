@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbmjurmlpr0e7"]
+
+[ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_mgoh8"]
+[ext_resource type="AudioStream" uid="uid://blvtqjojs5nh6" path="res://assets/sounds/effects/menu/dialogueblip.wav" id="2_qadre"]
+
+[node name="UserInterface" type="Control" node_paths=PackedStringArray("dialogue_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mgoh8")
+dialogue_label = NodePath("DialogueMenu/DialogueMargin/TextBackground/DialogueText")
+
+[node name="MainMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMenuMargin" type="MarginContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="OptionsMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueBlip" type="AudioStreamPlayer" parent="DialogueMenu"]
+stream = ExtResource("2_qadre")
+
+[node name="DialogueTimer" type="Timer" parent="DialogueMenu"]
+
+[node name="DialogueMargin" type="MarginContainer" parent="DialogueMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="TextBackground" type="Panel" parent="DialogueMenu/DialogueMargin"]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="DialogueText" type="RichTextLabel" parent="DialogueMenu/DialogueMargin/TextBackground"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

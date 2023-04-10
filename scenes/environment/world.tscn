@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://iq6o22bplntq"]
+
+[ext_resource type="PackedScene" uid="uid://cjvud4706hgmc" path="res://scenes/actors/player/player.tscn" id="1_kwycl"]
+[ext_resource type="Environment" uid="uid://53hbjpe3s7k1" path="res://assets/environment/basic_env.tres" id="2_dmfa6"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_kwycl")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+process_callback = 0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_dmfa6")
