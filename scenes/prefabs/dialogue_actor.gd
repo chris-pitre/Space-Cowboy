@@ -5,7 +5,7 @@ extends ProximityInteractable
 
 var interacting = false
 
-## Function that is called when player
+## Function that is called when player interacts with the DialogueActor.
 func interact() -> void:
 	if not interacting:
 		enter_dialogue(dialogue)

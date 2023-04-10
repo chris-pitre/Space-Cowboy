@@ -13,9 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_gs3bm")
 script = ExtResource("1_mgoh8")
-dialogue_label = NodePath("DialogueMenu/DialogueMargin/HBoxContainer/DialoguePanel/MarginContainer/DialogueText")
-choices_container = NodePath("DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel/MarginContainer/ChoicesContainer")
-choices_panel = NodePath("DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel")
+dialogue_label = NodePath("DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/DialoguePanel/MarginContainer/DialogueText")
+choices_container = NodePath("DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/ChoicesPanel/MarginContainer/ChoicesContainer")
+choices_panel = NodePath("DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/ChoicesPanel")
 
 [node name="MainMenu" type="Control" parent="."]
 layout_mode = 1
@@ -73,17 +73,22 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DialogueMenu/DialogueMargin"]
-custom_minimum_size = Vector2(0, 360)
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueMenu/DialogueMargin"]
 layout_mode = 2
 size_flags_vertical = 8
+alignment = 2
 
-[node name="DialoguePanel" type="Panel" parent="DialogueMenu/DialogueMargin/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="DialogueMenu/DialogueMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 360)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialoguePanel" type="Panel" parent="DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueMenu/DialogueMargin/HBoxContainer/DialoguePanel"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/DialoguePanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -95,17 +100,17 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="DialogueText" type="RichTextLabel" parent="DialogueMenu/DialogueMargin/HBoxContainer/DialoguePanel/MarginContainer"]
+[node name="DialogueText" type="RichTextLabel" parent="DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/DialoguePanel/MarginContainer"]
 layout_mode = 2
 scroll_active = false
 
-[node name="ChoicesPanel" type="Panel" parent="DialogueMenu/DialogueMargin/HBoxContainer"]
+[node name="ChoicesPanel" type="Panel" parent="DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(0, 360)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/ChoicesPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -117,7 +122,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ChoicesContainer" type="VBoxContainer" parent="DialogueMenu/DialogueMargin/HBoxContainer/ChoicesPanel/MarginContainer"]
+[node name="ChoicesContainer" type="VBoxContainer" parent="DialogueMenu/DialogueMargin/VBoxContainer/HBoxContainer/ChoicesPanel/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
