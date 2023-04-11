@@ -55,6 +55,7 @@ func display_message(message: String) -> void:
 	dialogue_label.visible_characters = 0
 	dialogue_running = true
 	dialogue_timer.start()
+	start_message()
 
 ## Starts dialogue given a DialogueBranch.
 func start_dialogue(dialogue_tree: Array[DialogueBranch], dialogue_actor: DialogueActor) -> void:
@@ -96,7 +97,6 @@ func end_dialogue() -> void:
 ## Handles loading of choices from a DialogueBranch into the UI.
 func get_choices() -> void:
 	num_choices = 0
-	print(current_dialogue.choices)
 	if current_dialogue.choices.size() > 1:
 		choices_panel.visible = true
 		for option in current_dialogue.choices:
@@ -118,6 +118,7 @@ func end_message() -> void:
 	dialogue_timer.stop()
 	dialogue_running = false
 
+## Handles hovering of dialogue choices.
 func set_hovered_choice(option: int) -> void:
 	if num_choices > 0:
 		hovered_choice = option

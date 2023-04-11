@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cht83s1gpqomg"]
+[gd_scene load_steps=9 format=3 uid="uid://c1j8i8usn8q2a"]
 
-[ext_resource type="PackedScene" uid="uid://c2wv18fqsgcl4" path="res://scenes/actors/player/player.tscn" id="1_kwycl"]
-[ext_resource type="Environment" uid="uid://53hbjpe3s7k1" path="res://assets/environment/basic_env.tres" id="2_dmfa6"]
+[ext_resource type="Script" path="res://scenes/environment/level.gd" id="1_juo68"]
+[ext_resource type="PackedScene" uid="uid://6rbl7by5xp3h" path="res://scenes/actors/player/player.tscn" id="1_kwycl"]
 [ext_resource type="PackedScene" uid="uid://dv4cfc8crpep6" path="res://scenes/prefabs/test_sign/test_sign.tscn" id="3_3bpow"]
 [ext_resource type="TileSet" uid="uid://ce3pb7mx2dg50" path="res://assets/environment/tilesets/basic.tres" id="4_cwhe2"]
 [ext_resource type="Script" path="res://src/resources/dialogue/dialogue_branch.gd" id="4_jjvmf"]
@@ -34,24 +34,37 @@ choices = Array[int]([])
 callback_on_begin = ""
 callback_on_finished = ""
 
-[node name="World" type="Node2D"]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("shadows_container", "projectiles_container")]
+y_sort_enabled = true
+script = ExtResource("1_juo68")
+shadows_container = NodePath("Shadows")
+projectiles_container = NodePath("Projectiles")
 
-[node name="Player" parent="." instance=ExtResource("1_kwycl")]
+[node name="Shadows" type="CanvasGroup" parent="."]
+modulate = Color(1, 1, 1, 0.211765)
+z_index = -1
+
+[node name="Projectiles" type="CanvasGroup" parent="."]
+
+[node name="Actors" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="Actors" instance=ExtResource("1_kwycl")]
 position = Vector2(8, 8)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="Actors/Player"]
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_dmfa6")
+[node name="Environment" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="TestSign" parent="." instance=ExtResource("3_3bpow")]
+[node name="TestSign" parent="Environment" instance=ExtResource("3_3bpow")]
 position = Vector2(232, 136)
 dialogue = Array[ExtResource("4_jjvmf")]([SubResource("Resource_1b6dj"), SubResource("Resource_pjydb"), SubResource("Resource_jegkr")])
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="Environment"]
 z_index = -5
 tile_set = ExtResource("4_cwhe2")
 format = 2

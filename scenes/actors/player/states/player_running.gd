@@ -1,4 +1,4 @@
-class_name PlayerWalking
+class_name PlayerRunning
 extends State
 
 ## When this state is entered
@@ -12,6 +12,8 @@ func run(delta: float) -> void:
 ## Run every physics frame
 func run_physics(delta: float) -> void:
 	actor.get_movement_direction(delta)
+	if Input.is_action_just_pressed("walk"):
+		state_machine.next_state = state_machine.states["Walking"]
 	if actor.get_input_vector().length() == 0:
 		state_machine.next_state = state_machine.states["Idle"]
 

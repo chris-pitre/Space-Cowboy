@@ -20,14 +20,16 @@ func _physics_process(delta) -> void:
 	current_state.run_physics(delta)
 	if next_state:
 		enter_state(next_state)
+		next_state = null
 
 func get_states() -> void:
 	for state in get_children():
 		states[state.name] = state
 
 ## Handles state transitions
-func enter_state(next_state: State) -> void:
-	last_state = current_state
-	current_state.exit()
-	next_state.enter()
-	current_state = next_state
+func enter_state(enter_state: State) -> void:
+	if enter_state != current_state:
+		last_state = current_state
+		current_state.exit()
+		enter_state.enter()
+		current_state = enter_state
