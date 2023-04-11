@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://di3sjlknau0kl"]
+
+[ext_resource type="Script" path="res://scenes/effects/shadow.gd" id="1_bconj"]
+
+[node name="Shadow" type="Node2D"]
+script = ExtResource("1_bconj")
