@@ -51,6 +51,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Actors" instance=ExtResource("1_kwycl")]
 position = Vector2(8, 8)
+acceleration = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="Actors/Player"]
 process_callback = 0

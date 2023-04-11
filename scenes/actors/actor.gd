@@ -2,6 +2,7 @@ class_name Actor extends CharacterBody2D
 
 @export_category("Actor Settings")
 @export var speed: float = 128.0
+@export var acceleration: float = 5.0
 @export var cast_shadow: bool = true
 @export var shadow_size: int = 8
 @export var sprite: Node2D
@@ -43,7 +44,7 @@ func _physics_process(delta) -> void:
 	else:
 		direction = get_movement_direction(delta).normalized()
 	if not movement_locked:
-		velocity = direction * speed
+		velocity = velocity.move_toward(direction * speed, acceleration) 
 
 	move_and_slide()
 
