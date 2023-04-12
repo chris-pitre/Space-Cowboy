@@ -5,8 +5,11 @@ extends State
 
 ## When this state is entered
 func enter() -> void:
-	var mouse_pos = actor.get_local_mouse_position().normalized() * 4096
-	var hitscan = PhysicsRayQueryParameters2D.create(actor.position, actor.to_global(mouse_pos))
+	var bullet_direction = actor.get_local_mouse_position().normalized() * 4096
+	var spread = randf_range(-0.0075, 0.0075)
+	if state_machine.last_state != state_machine.states["Walking"] or state_machine.last_state != state_machine.states["Idle"]:
+		bullet_direction = bullet_direction.rotated(spread)
+	var hitscan = PhysicsRayQueryParameters2D.create(actor.position, actor.to_global(bullet_direction))
 	hitscan.exclude = [self]
 	var result = actor.space.intersect_ray(hitscan)
 	
@@ -17,7 +20,7 @@ func enter() -> void:
 		if result.collider.has_method("is_hit"):
 			result.collider.is_hit(1)
 	else:
-		bullet.animate(-actor.to_local(Vector2.ZERO), mouse_pos)
+		bullet.animate(-actor.to_local(Vector2.ZERO), bullet_direction)
 
 	state_machine.next_state = state_machine.last_state
 
