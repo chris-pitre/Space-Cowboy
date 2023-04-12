@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://6rbl7by5xp3h"]
+[gd_scene load_steps=11 format=3 uid="uid://6rbl7by5xp3h"]
 
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_wvyjj"]
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="2_5hfnq"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://byllt52147x1u" path="res://assets/textures/debug/smiley.png" id="5_2ft3j"]
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_running.gd" id="5_jp3ig"]
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_jumping.gd" id="6_x4jmu"]
+[ext_resource type="Script" path="res://scenes/actors/player/states/player_attacking.gd" id="7_ahf4s"]
+[ext_resource type="Theme" uid="uid://3m1fi4p1mn7j" path="res://assets/themes/basic.tres" id="9_w2qao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcfg4"]
 size = Vector2(16, 8)
@@ -16,30 +18,29 @@ motion_mode = 1
 script = ExtResource("1_wvyjj")
 sprite = NodePath("Sprite2D")
 state_machine = NodePath("StateMachine")
+speed = null
+shadow_size = null
+cast_shadow = null
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state", "actor")]
 script = ExtResource("2_5hfnq")
 default_state = NodePath("Idle")
+actor = NodePath("..")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+[node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_8m2q5")
-actor = NodePath("../..")
-state_machine = NodePath("..")
 
-[node name="Walking" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+[node name="Walking" type="Node" parent="StateMachine"]
 script = ExtResource("4_akfcc")
-actor = NodePath("../..")
-state_machine = NodePath("..")
 
-[node name="Running" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+[node name="Running" type="Node" parent="StateMachine"]
 script = ExtResource("5_jp3ig")
-actor = NodePath("../..")
-state_machine = NodePath("..")
 
-[node name="Jumping" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+[node name="Jumping" type="Node" parent="StateMachine"]
 script = ExtResource("6_x4jmu")
-actor = NodePath("../..")
-state_machine = NodePath("..")
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("7_ahf4s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -47,3 +48,18 @@ texture = ExtResource("5_2ft3j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wcfg4")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -41.0
+offset_right = 15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_w2qao")
+text = "Idle"
+horizontal_alignment = 1
+vertical_alignment = 1

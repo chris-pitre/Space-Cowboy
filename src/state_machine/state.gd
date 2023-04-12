@@ -1,10 +1,8 @@
 class_name State
 extends Node
 
-## The Actor that this state controls.
-@export var actor: Actor
-## The state machine that this state belongs to.
-@export var state_machine: StateMachine
+var state_machine: StateMachine
+var actor: Actor
 
 ## When this state is entered
 func enter() -> void:

@@ -1,18 +1,18 @@
 extends Node2D
 
 var caster: Node2D
-var shadow_size: int = 8
-var shadow_color: Color = Color(0, 0, 0)
+var shadow_size: int
+var num_points: int
+var shadow_color: Color
 
 func _draw() -> void:
-	draw_shadow(shadow_size, shadow_color)
+	draw_shadow(shadow_size, shadow_color, num_points)
 
 func _process(_delta) -> void:
 	if caster:
 		global_position = caster.global_position
 
-func draw_shadow(size, color):
-	var num_points = 8
+func draw_shadow(size, color, num_points):
 	var points = PackedVector2Array()
 	
 	for i in range(num_points):

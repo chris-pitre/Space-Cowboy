@@ -3,6 +3,7 @@ extends State
 
 ## When this state is entered
 func enter() -> void:
+	actor.movement_locked = true
 	actor.grounded = false
 	actor.y_velocity = 128
 
@@ -17,4 +18,4 @@ func run_physics(delta: float) -> void:
 
 ## When this state is exited
 func exit() -> void:
-	pass
+	actor.movement_locked = false

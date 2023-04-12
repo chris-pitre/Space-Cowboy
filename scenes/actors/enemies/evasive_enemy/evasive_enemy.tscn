@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://c1of2q3k7fs83"]
+
+[ext_resource type="Script" path="res://scenes/actors/enemies/evasive_enemy/evasive_enemy.gd" id="1_7mfmi"]
+[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="2_wgtpf"]
+[ext_resource type="Script" path="res://scenes/actors/enemies/evasive_enemy/states/evasive_enemy_idle.gd" id="3_ljarx"]
+[ext_resource type="Script" path="res://scenes/actors/enemies/evasive_enemy/states/evasive_enemy_windup.gd" id="4_x3mqc"]
+[ext_resource type="Script" path="res://scenes/actors/enemies/evasive_enemy/states/evasive_enemy_attacking.gd" id="5_o0hys"]
+[ext_resource type="Script" path="res://scenes/actors/enemies/evasive_enemy/states/evasive_enemy.relocate.gd" id="6_kmt4d"]
+[ext_resource type="Script" path="res://scenes/actors/enemies/evasive_enemy/Line2D.gd" id="7_edvv1"]
+[ext_resource type="Texture2D" uid="uid://bn5t7r3t4yxpm" path="res://assets/textures/debug/debugsign.png" id="7_qw1hv"]
+[ext_resource type="Theme" uid="uid://3m1fi4p1mn7j" path="res://assets/themes/basic.tres" id="9_kmaon"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbcf5"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "nav_agent", "state_machine")]
+script = ExtResource("1_7mfmi")
+sprite = NodePath("Sprite2D")
+nav_agent = NodePath("NavigationAgent2D")
+state_machine = NodePath("StateMachine")
+speed = null
+shadow_size = null
+cast_shadow = null
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state", "actor")]
+script = ExtResource("2_wgtpf")
+default_state = NodePath("Idle")
+actor = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_ljarx")
+
+[node name="WindUp" type="Node" parent="StateMachine"]
+script = ExtResource("4_x3mqc")
+
+[node name="Attacking" type="Node" parent="StateMachine"]
+script = ExtResource("5_o0hys")
+
+[node name="Relocate" type="Node" parent="StateMachine"]
+script = ExtResource("6_kmt4d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rbcf5")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 4.0
+
+[node name="Line2D" type="Line2D" parent="NavigationAgent2D"]
+script = ExtResource("7_edvv1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("7_qw1hv")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_kmaon")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,9 +1,9 @@
-class_name PlayerIdle
+class_name PlayerAttacking
 extends State
 
 ## When this state is entered
 func enter() -> void:
-	pass
+	actor.speed /= 2
 
 ## Run every frame
 func run(delta: float) -> void:
@@ -11,12 +11,8 @@ func run(delta: float) -> void:
 
 ## Run every physics frame
 func run_physics(delta: float) -> void:
-	if actor.get_input_vector().length() > 0:
-		if Input.is_action_pressed("walk"):
-			state_machine.enter_state_by_name("Walking")
-		else:
-			state_machine.enter_state_by_name("Running")
+	pass
 
 ## When this state is exited
 func exit() -> void:
-	pass
+	actor.speed *= 2
