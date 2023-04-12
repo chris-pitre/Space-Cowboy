@@ -17,7 +17,6 @@ collision_mask = 10
 motion_mode = 1
 script = ExtResource("1_wvyjj")
 sprite = NodePath("Sprite2D")
-current_bullet = null
 state_machine = NodePath("StateMachine")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]

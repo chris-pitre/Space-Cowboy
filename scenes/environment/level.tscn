@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1j8i8usn8q2a"]
+[gd_scene load_steps=10 format=3 uid="uid://c1j8i8usn8q2a"]
 
 [ext_resource type="Script" path="res://scenes/environment/level.gd" id="1_juo68"]
 [ext_resource type="PackedScene" uid="uid://6rbl7by5xp3h" path="res://scenes/actors/player/player.tscn" id="1_kwycl"]
 [ext_resource type="PackedScene" uid="uid://dv4cfc8crpep6" path="res://scenes/prefabs/test_sign/test_sign.tscn" id="3_3bpow"]
+[ext_resource type="PackedScene" uid="uid://4cf71r7q316t" path="res://scenes/actors/dummy/dummy.tscn" id="3_j08b4"]
 [ext_resource type="TileSet" uid="uid://ce3pb7mx2dg50" path="res://assets/environment/tilesets/basic.tres" id="4_cwhe2"]
 [ext_resource type="Script" path="res://src/resources/dialogue/dialogue_branch.gd" id="4_jjvmf"]
 
@@ -57,6 +58,9 @@ acceleration = 20.0
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
+
+[node name="Dummy" parent="Actors" instance=ExtResource("3_j08b4")]
+position = Vector2(172, 136)
 
 [node name="Environment" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -1,0 +1,72 @@
+[gd_scene load_steps=5 format=3 uid="uid://4cf71r7q316t"]
+
+[ext_resource type="Script" path="res://scenes/actors/dummy/dummy.gd" id="1_u1gb6"]
+[ext_resource type="Texture2D" uid="uid://byllt52147x1u" path="res://assets/textures/debug/smiley.png" id="2_82wto"]
+[ext_resource type="FontFile" uid="uid://c5lo51ho2gio0" path="res://assets/themes/fonts/JosefinSans-Bold.ttf" id="3_02jrx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qs6pd"]
+size = Vector2(16, 16)
+
+[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource("1_u1gb6")
+hp = null
+speed = null
+acceleration = null
+shadow_size = null
+sprite = NodePath("Sprite2D")
+pathfind_movement = null
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Container" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -36.5
+offset_right = 60.0
+offset_bottom = 6.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Damage" type="Label" parent="Control/Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_02jrx")
+theme_override_font_sizes/font_size = 9
+text = "damage: 0
+"
+
+[node name="TotalDamage" type="Label" parent="Control/Container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_02jrx")
+theme_override_font_sizes/font_size = 9
+text = "total damage: 0"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_82wto")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_qs6pd")
