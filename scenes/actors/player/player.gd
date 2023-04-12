@@ -1,7 +1,14 @@
 class_name Player extends Actor
 
+var space: PhysicsDirectSpaceState2D
+
 func _ready():
 	Game.player = self
+
+func _physics_process(delta):
+	space = get_world_2d().direct_space_state
+	super._physics_process(delta)
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("jump"):

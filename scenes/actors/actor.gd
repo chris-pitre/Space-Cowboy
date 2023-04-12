@@ -1,6 +1,7 @@
 class_name Actor extends CharacterBody2D
 
 @export_category("Actor Settings")
+@export var hp: float = 10
 @export var speed: float = 128.0
 @export var acceleration: float = 5.0
 @export var cast_shadow: bool = true
@@ -57,3 +58,7 @@ func get_movement_direction(delta) -> Vector2:
 func get_input_vector() -> Vector2:
 	return Vector2(Input.get_axis("move_left", "move_right"),
 			Input.get_axis("move_up", "move_down"))
+			
+## Handles what happens when a bullet hits the actor.
+func is_hit(damage: float) -> void:
+	push_error("Actor doesn't implement <is_hit> function.")

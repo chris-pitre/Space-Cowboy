@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4ssae1571ae4"]
+
+[ext_resource type="Script" path="res://scenes/actors/player/bullet/bullet_tracer.gd" id="1_adj80"]
+
+[sub_resource type="Gradient" id="Gradient_fhth7"]
+colors = PackedColorArray(0.885828, 0.730332, 0.136577, 1, 0.87451, 0.87451, 0, 1)
+
+[node name="BulletTracer" type="Line2D"]
+width = 1.5
+default_color = Color(0.87451, 0.87451, 0, 1)
+gradient = SubResource("Gradient_fhth7")
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("1_adj80")

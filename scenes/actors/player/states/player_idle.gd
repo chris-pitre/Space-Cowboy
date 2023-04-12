@@ -16,6 +16,8 @@ func run_physics(delta: float) -> void:
 			state_machine.next_state = state_machine.states["Walking"]
 		else:
 			state_machine.next_state = state_machine.states["Running"]
+	if Input.is_action_just_pressed("attack"):
+		state_machine.enter_state(state_machine.states["Shooting"])
 
 ## When this state is exited
 func exit() -> void:

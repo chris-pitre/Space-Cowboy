@@ -22,6 +22,7 @@ shape = SubResource("CircleShape2D_yvg5u")
 texture = ExtResource("3_ob5g3")
 
 [node name="SignCollision" type="StaticBody2D" parent="."]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SignCollision"]
 shape = SubResource("RectangleShape2D_uheix")
