@@ -21,8 +21,10 @@ Game="*res://src/singletons/game.gd"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1024
+window/size/viewport_height=576
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [input]
 
