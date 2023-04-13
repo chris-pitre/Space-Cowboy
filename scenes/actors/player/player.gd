@@ -1,5 +1,8 @@
 class_name Player extends Actor
 
+@export_category("Player Settings")
+@export var ammo: int = 6
+
 var space: PhysicsDirectSpaceState2D
 
 func _ready():
@@ -15,5 +18,5 @@ func _process(delta):
 		state_machine.enter_state(state_machine.states["Jumping"])
 	super._process(delta)
 
-func get_movement_direction(delta) -> Vector2:
+func get_movement_direction() -> Vector2:
 	return get_input_vector()

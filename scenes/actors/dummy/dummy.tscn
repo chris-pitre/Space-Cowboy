@@ -11,12 +11,7 @@ size = Vector2(16, 16)
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_u1gb6")
-hp = null
-speed = null
-acceleration = null
-shadow_size = null
 sprite = NodePath("Sprite2D")
-pathfind_movement = null
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

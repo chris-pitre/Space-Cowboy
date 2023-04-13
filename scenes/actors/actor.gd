@@ -43,14 +43,14 @@ func _physics_process(delta) -> void:
 		else:
 			push_error("Pathfinding is enabled for an actor, but no nav_agent was found.")
 	else:
-		direction = get_movement_direction(delta).normalized()
+		direction = get_movement_direction().normalized()
 	if not movement_locked:
 		velocity = velocity.move_toward(direction * speed, acceleration) 
 
 	move_and_slide()
 
 ## Controls the direction that the actor wants to move in.
-func get_movement_direction(delta) -> Vector2:
+func get_movement_direction() -> Vector2:
 	push_error("Actor doesn't implement <get_movement_direction> function.")
 	return Vector2()
 
