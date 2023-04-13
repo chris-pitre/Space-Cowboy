@@ -6,10 +6,9 @@ extends State
 ## When this state is entered
 func enter() -> void:
 	actor.ammo -= 1
-	print(actor.ammo)
-	var bullet_direction = actor.get_local_mouse_position().normalized() * 1024
-	var spread = randf_range(-0.0075, 0.0075)
-	if state_machine.last_state != state_machine.states["Walking"] or state_machine.last_state != state_machine.states["Idle"]:
+	var bullet_direction = actor.get_local_mouse_position().normalized() * 1024	
+	if state_machine.last_state == state_machine.states["Running"]:
+		var spread = randf_range(-0.0075, 0.0075)
 		bullet_direction = bullet_direction.rotated(spread)
 	var hitscan = PhysicsRayQueryParameters2D.create(actor.position, actor.to_global(bullet_direction))
 	hitscan.exclude = [self]

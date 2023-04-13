@@ -11,7 +11,7 @@ func enter() -> void:
 		await get_tree().create_timer(0.5).timeout
 		actor.ammo += 1
 		print(actor.ammo)
-	state_machine.enter_state(state_machine.states["Idle"])
+	state_machine.next_state = state_machine.states["Idle"]
 
 ## Run every frame
 func run(delta: float) -> void:

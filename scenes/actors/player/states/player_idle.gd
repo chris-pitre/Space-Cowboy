@@ -18,6 +18,8 @@ func run_physics(delta: float) -> void:
 			state_machine.next_state = state_machine.states["Running"]
 	if Input.is_action_just_pressed("attack") and actor.ammo > 0:
 		state_machine.enter_state(state_machine.states["Shooting"])
+	if Input.is_action_just_pressed("attack_secondary") and actor.ammo > 0:
+		state_machine.enter_state(state_machine.states["Ability"])
 	if Input.is_action_just_pressed("reload"):
 		state_machine.enter_state(state_machine.states["Reloading"])
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6rbl7by5xp3h"]
+[gd_scene load_steps=12 format=3 uid="uid://6rbl7by5xp3h"]
 
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_wvyjj"]
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="2_5hfnq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_jumping.gd" id="6_x4jmu"]
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_shooting.gd" id="7_sfbsp"]
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_reloading.gd" id="8_iabr4"]
+[ext_resource type="Script" path="res://scenes/actors/player/states/player_ability.gd" id="9_4qgma"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcfg4"]
 size = Vector2(16, 8)
@@ -51,6 +52,11 @@ state_machine = NodePath("..")
 
 [node name="Reloading" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
 script = ExtResource("8_iabr4")
+actor = NodePath("../..")
+state_machine = NodePath("..")
+
+[node name="Ability" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+script = ExtResource("9_4qgma")
 actor = NodePath("../..")
 state_machine = NodePath("..")
 
