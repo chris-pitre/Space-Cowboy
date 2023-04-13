@@ -1,17 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://4cf71r7q316t"]
+[gd_scene load_steps=8 format=3 uid="uid://4cf71r7q316t"]
 
 [ext_resource type="Script" path="res://scenes/actors/dummy/dummy.gd" id="1_u1gb6"]
 [ext_resource type="Texture2D" uid="uid://byllt52147x1u" path="res://assets/textures/debug/smiley.png" id="2_82wto"]
+[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="2_vyd8x"]
 [ext_resource type="FontFile" uid="uid://c5lo51ho2gio0" path="res://assets/themes/fonts/JosefinSans-Bold.ttf" id="3_02jrx"]
+[ext_resource type="Script" path="res://scenes/actors/dummy/states/dummy_idle.gd" id="3_7kf3d"]
+[ext_resource type="Script" path="res://scenes/actors/dummy/states/dummy_shooting.gd" id="4_3qfpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qs6pd"]
 size = Vector2(16, 16)
 
-[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+[node name="Dummy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "state_machine")]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_u1gb6")
 sprite = NodePath("Sprite2D")
+state_machine = NodePath("StateMachine")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
+script = ExtResource("2_vyd8x")
+default_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+script = ExtResource("3_7kf3d")
+actor = NodePath("../..")
+state_machine = NodePath("..")
+
+[node name="Shooting" type="Node" parent="StateMachine" node_paths=PackedStringArray("actor", "state_machine")]
+script = ExtResource("4_3qfpl")
+actor = NodePath("../..")
+state_machine = NodePath("..")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

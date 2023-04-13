@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqvi3ol5alffp"]
+
+[ext_resource type="Script" path="res://scenes/actors/dummy/bullet/dummy_bullet.gd" id="1_r2pjr"]
+[ext_resource type="Texture2D" uid="uid://dfdjtbwr2tw3s" path="res://assets/textures/bullet/enemy_bullet.png" id="2_ayksc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seiwe"]
+size = Vector2(4, 4)
+
+[node name="DummyBullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_r2pjr")
+lifetime = 8.0
+speed = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ayksc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_seiwe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

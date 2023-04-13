@@ -23,3 +23,5 @@ func _process(delta):
 func get_movement_direction() -> Vector2:
 	return get_input_vector()
 
+func is_hit(damage: float) -> void:
+	print("ow")
