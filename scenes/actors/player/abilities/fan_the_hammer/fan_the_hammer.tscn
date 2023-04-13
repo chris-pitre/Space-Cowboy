@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/actors/player/abilities/fan_the_hammer/fan_the_hammer.gd" id="1_5mrbg"]
+
+[node name="FanTheHammer" type="Node" node_paths=PackedStringArray("actor")]
+script = ExtResource("1_5mrbg")
+actor = NodePath("../..")
