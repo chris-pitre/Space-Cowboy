@@ -5,6 +5,8 @@ class_name Player extends Actor
 
 var space: PhysicsDirectSpaceState2D
 
+@onready var ability_manager = $AbilityManager
+
 func _ready():
 	Game.player = self
 
@@ -20,3 +22,4 @@ func _process(delta):
 
 func get_movement_direction() -> Vector2:
 	return get_input_vector()
+
