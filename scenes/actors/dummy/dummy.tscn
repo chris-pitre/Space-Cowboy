@@ -63,5 +63,4 @@ texture = ExtResource("2_82wto")
 flip_v = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_qs6pd")

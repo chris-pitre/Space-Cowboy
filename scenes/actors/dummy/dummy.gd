@@ -2,6 +2,9 @@ class_name Dummy extends Actor
 
 var total_damage: int = 0
 
+func _ready():
+	height = -8
+
 func get_movement_direction() -> Vector2:
 	return Vector2.ZERO
 
