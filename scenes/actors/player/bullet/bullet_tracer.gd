@@ -1,9 +1,11 @@
 extends Line2D
 
-func animate(origin, end):
-	add_point(origin)
-	add_point(end)
+var origin: Vector2
+var end: Vector2
+var new_end: Vector2
 	
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "modulate", Color(0, 0, 0, 0), .5).set_trans(Tween.TRANS_EXPO)
-	tween.tween_callback(queue_free)
+func _physics_process(delta):
+	origin = origin.move_toward(end, 50)
+	new_end = new_end.move_toward(end, 80)
+	set_point_position(0, origin)
+	set_point_position(1, new_end)

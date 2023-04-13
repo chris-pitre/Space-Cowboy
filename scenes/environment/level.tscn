@@ -52,13 +52,7 @@ y_sort_enabled = true
 
 [node name="Player" parent="Actors" instance=ExtResource("1_kwycl")]
 position = Vector2(8, 8)
-ammo = 6
-hp = 10.0
-speed = 128.0
 acceleration = 20.0
-cast_shadow = true
-shadow_size = 8
-pathfind_movement = false
 
 [node name="Camera2D" type="Camera2D" parent="Actors/Player"]
 process_callback = 0
@@ -67,11 +61,6 @@ position_smoothing_speed = 8.0
 
 [node name="Dummy" parent="Actors" instance=ExtResource("3_j08b4")]
 position = Vector2(172, 136)
-hp = 10.0
-speed = 128.0
-acceleration = 5.0
-shadow_size = 8
-pathfind_movement = false
 
 [node name="Environment" type="Node2D" parent="."]
 y_sort_enabled = true
