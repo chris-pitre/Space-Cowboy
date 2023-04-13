@@ -3,7 +3,7 @@ extends Ability
 
 @onready var bullet_tracer = preload("res://scenes/actors/player/bullet/bullet_tracer.tscn")
 
-func do_ability():
+func do_ability(actor: Actor):
 	for i in range(actor.ammo):
 		var bullet_direction = actor.get_local_mouse_position().normalized() * 1024
 		var spread = randf_range(-0.02, 0.02)

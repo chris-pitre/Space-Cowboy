@@ -9,7 +9,7 @@ func _ready():
 
 ## Performs current ability 
 func do_ability() -> void:
-	get_child(0).do_ability()
+	get_child(0).do_ability(actor)
 
 ## Returns next ability and orders children
 func next_ability() -> Ability:
