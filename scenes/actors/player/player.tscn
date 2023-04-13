@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_reloading.gd" id="8_iabr4"]
 [ext_resource type="Script" path="res://scenes/actors/player/states/player_ability.gd" id="9_4qgma"]
 [ext_resource type="Script" path="res://src/ability_manager/ability_manager.gd" id="10_76oet"]
-[ext_resource type="PackedScene" uid="uid://d2agbwalrxf83" path="res://scenes/actors/player/abilities/fan_the_hammer/fan_the_hammer.tscn" id="11_y5nx0"]
+[ext_resource type="PackedScene" path="res://scenes/actors/player/abilities/fan_the_hammer/fan_the_hammer.tscn" id="11_y5nx0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcfg4"]
 size = Vector2(16, 8)

@@ -9,7 +9,10 @@ func _ready() -> void:
 	await get_tree().create_timer(lifetime, false).timeout
 	queue_free()
 
-func _on_Bullet_area_entered(body):
+func _physics_process(delta):
+	pass
+
+func _on_area_entered(body):
 	if body.has_method("is_hit"):
 		body.is_hit()
 	queue_free()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj57ofm3ucld8"]
+
+[ext_resource type="Script" path="res://scenes/prefabs/bullet/bullet.gd" id="1_trjlc"]
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_trjlc")
