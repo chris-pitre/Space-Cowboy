@@ -7,7 +7,7 @@ func enter() -> void:
 
 ## Run every frame
 func run(delta: float) -> void:
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(actor.time_between_shots).timeout
 	state_machine.next_state = state_machine.states["Shooting"]
 
 ## Run every physics frame

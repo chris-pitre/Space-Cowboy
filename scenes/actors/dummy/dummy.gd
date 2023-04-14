@@ -1,5 +1,8 @@
 class_name Dummy extends Actor
 
+@export_category("Dummy Settings")
+@export var time_between_shots: float = 0.5
+
 var total_damage: int = 0
 
 func _ready():
